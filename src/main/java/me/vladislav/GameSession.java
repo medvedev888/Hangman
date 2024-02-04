@@ -39,15 +39,15 @@ public class GameSession {
             // entering the letter
             System.out.println("Enter the letter");
             currentLetter = console.inputtingTheLetter();
-            enteredLetters.add(currentLetter);
 
             guessed = checkThePresenceOfALetter(currentLetter);
-
             System.out.println(result);
 
-            if(printHangman(guessed, result)){
+            if(printHangman(guessed, currentLetter)){
                 return;
             }
+
+            enteredLetters.add(currentLetter);
 
             if(result.indexOf("_") == -1) {
                 System.out.println("You win! :)");
@@ -78,9 +78,9 @@ public class GameSession {
         return guessed;
     }
 
-    // true, if the attempts are over
-    private boolean printHangman(boolean guessed, StringBuilder result){
-        if (!guessed) {
+    // true, if the attempts are over, otherwise it's a false
+    private boolean printHangman(boolean guessed, char currentLetter){
+        if (!guessed && !(enteredLetters.contains(currentLetter))) {
             System.out.println("There is no such letter");
             amountMistakes++;
             System.out.println("We have a " + (5 - amountMistakes) + " attempts");

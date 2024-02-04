@@ -11,7 +11,7 @@ public class Console {
     private Scanner in = new Scanner(System.in);
     private String currentString;
     private char currentLetter;
-    private String filePath = "src/main/resources/test.txt";
+    private String filePath = "src/main/resources/dictionary.txt";
 
     // this function reading the dictionary and writing words in the storage
     public void readingDictionary(WordsStorage storage) {
