@@ -12,14 +12,14 @@ public class Game {
             System.out.println("To starting new game, enter N");
             System.out.println("To end the game, enter E");
             currentLetter = console.inputtingTheLetter();
-            if(currentLetter == 'E') {
+            if(currentLetter == 'e') {
                 System.out.println("Thanks for the game)");
                 return;
-            } else if(currentLetter == 'N'){
+            } else if(currentLetter == 'n'){
                 GameSession gameSession = new GameSession(console, storage);
                 gameSession.runNewGameSession(console);
             } else {
-                System.out.println("Please, enter correct letter");
+                System.out.println("Please, enter the correct letter");
             }
         }
     }

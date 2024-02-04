@@ -9,8 +9,8 @@ import java.util.Scanner;
 public class Console {
     BufferedReader bufferedReader;
     private Scanner in = new Scanner(System.in);
-    private char currentLetter;
     private String currentString;
+    private char currentLetter;
     private String filePath = "src/main/resources/test.txt";
 
     // this function reading the dictionary and writing words in the storage
@@ -33,13 +33,27 @@ public class Console {
     public char inputtingTheLetter(){
         currentString = in.nextLine();
         currentString = currentString.trim();
-        if(currentString.length() != 1){
-            System.out.println("Enter one letter, please");
+        if(!validateTheLetter(currentString)){
+            System.out.println("Please, enter the correct letter");
             inputtingTheLetter();
-        } else {
-            currentLetter = currentString.charAt(0);
         }
         return currentLetter;
+    }
+
+    //true is right letter
+    private boolean validateTheLetter(String currentString){
+        if(currentString.length() != 1){
+            System.out.println("Enter one letter, please");
+            return false;
+        } else if((int) (currentString.charAt(0)) >= 65 && (int) (currentString.charAt(0)) <= 90){
+            currentLetter = (char) (currentString.charAt(0) + 32);
+            return true;
+        } else if((int) (currentString.charAt(0)) >= 97 && (int) (currentString.charAt(0)) <= 122){
+            currentLetter = currentString.charAt(0);
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
