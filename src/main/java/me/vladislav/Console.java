@@ -1,13 +1,33 @@
 package me.vladislav;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Console {
+    BufferedReader bufferedReader;
     private Scanner in = new Scanner(System.in);
     private char currentLetter;
     private String currentString;
+    private String filePath = "src/main/resources/test.txt";
 
-    //------check this function
+    // this function reading the dictionary and writing words in the storage
+    public void readingDictionary(WordsStorage storage) {
+        try {
+            bufferedReader = new BufferedReader(new FileReader(filePath));
+            String readLine;
+            do {
+                readLine = bufferedReader.readLine();
+                storage.addWordToTheStorage(readLine);
+            } while(readLine != null);
+            bufferedReader.close();
+
+        } catch (IOException e) {
+            System.out.println("The dictionary is empty");
+        }
+    }
 
     // function for reading one letter
     public char inputtingTheLetter(){
@@ -20,11 +40,6 @@ public class Console {
             currentLetter = currentString.charAt(0);
         }
         return currentLetter;
-    }
-
-    public String inputtingTheWord(){
-        currentString = in.nextLine();
-        return currentString.trim();
     }
 
 }
